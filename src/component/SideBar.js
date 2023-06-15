@@ -3,16 +3,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Spinner from "react-bootstrap/Spinner";
 
 export const SideBar = ({ prevChats }) => {
-  const f = (item, index) => (
-    <>
-      <li className="chat-message user-message chat-bubble" key={index}>
-        {item.Query}
-      </li>
-      <li className="chat-message assistant-message chat-bubble">
-        {item.Response}
-      </li>
-    </>
-  );
   console.log(prevChats);
   return (
     <div className="sideBar">
