@@ -1,38 +1,98 @@
-.App {
+/* Reset default margin and padding */
+body {
+  margin: 2rem;
+  padding: 0;
+  background-color: #4e559e;
+}
+
+/* Chat container */
+.chat-container {
+  width: 70%;
+  max-width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Chat header */
+.chat-header {
+  background-color: #f2f2f2;
+  padding: 10px;
+  font-weight: bold;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Chat messages */
+.chat-messages {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  list-style-type: none;
+  padding: 10px;
+  height: 20rem;
+  overflow-y: scroll;
+  background-color: white;
+}
+.chat-messages > div {
+  display: flex;
+  margin: 30% 0 0 50%;
+}
+/* Chat message */
+.chat-message {
+  margin-bottom: 10px;
+}
+
+/* User message */
+.user-message {
+  background-color: #412ac4;
   color: white;
+  margin-left: 7rem;
+
+  text-align: right;
 }
 
-.App-link {
-  color: #61dafb;
+/* Chat bubble */
+.chat-bubble {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 14px;
+  max-width: 70%;
+  word-wrap: break-word;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Assistant message */
+.assistant-message {
+  text-align: left;
+  background-color: #e8dede;
+}
+
+/* Input area */
+.input-area {
+  padding: 10px;
+  background-color: #f2f2f2;
+  min-width: 200px;
+}
+
+/* User input */
+.user-input {
+  width: 100%;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.sideBar {
+  height: 32rem;
+
+  display: flex;
+  flex-direction: column;
+  background-color: #191e5e;
+  color: white;
+  width: 30%;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 5px;
 }
