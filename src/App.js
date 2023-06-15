@@ -10,9 +10,9 @@ const App = () => {
   const [message, setMessage] = useState("");
   const [prevChats, setprevChats] = useState([]);
 
-  const api = "http://localhost:8000/complete";
+  const api = "https://chat-gpt-4svq.onrender.com/";
 
-  const fetchData = async (questions, setQuestions) => {
+  const fetchData = async (questions) => {
     try {
       const options = {
         method: "POST",
