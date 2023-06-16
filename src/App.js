@@ -1,7 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Search } from "./component/Form";
-import { SideBar } from "./component/SideBar";
 const App = () => {
   var question = "";
   const callback = (questions) => {
@@ -48,8 +47,8 @@ const App = () => {
   }, [message, question]);
 
   return (
-    <div className="container-fluid d-flex gap-1 ">
-      <SideBar prevChats={prevChats} callback={callback} />
+    <div className="container d-flex gap-1 ">
+      {/* <SideBar prevChats={prevChats} callback={callback} /> */}
 
       <Search
         fetchData={fetchData}

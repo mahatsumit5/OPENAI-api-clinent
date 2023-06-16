@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-
+import { HamBurger } from "./Hambar";
 export const Search = ({ fetchData, callback, prevChats }) => {
   const [questions, setQuestions] = useState("");
   callback(questions);
@@ -21,7 +21,15 @@ export const Search = ({ fetchData, callback, prevChats }) => {
   return (
     <>
       <div className="chat-container">
-        <div className="chat-header">Sumit GPT</div>
+        <div className="chat-header">
+          <div> Sumit GPT</div>
+
+          <HamBurger
+            prevChats={prevChats}
+            callback={callback}
+            fetchData={fetchData}
+          />
+        </div>
 
         <ul className="chat-messages">
           {" "}

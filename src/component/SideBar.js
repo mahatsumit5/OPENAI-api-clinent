@@ -3,7 +3,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Spinner from "react-bootstrap/Spinner";
 
 export const SideBar = ({ prevChats }) => {
-  console.log(prevChats);
   return (
     <div className="sideBar">
       <h1>Questions</h1>
