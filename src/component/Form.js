@@ -1,48 +1,75 @@
-import Form from "react-bootstrap/Form";
+import { Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import { fetchData } from "../axios/axiosHelper.js";
+import { useState, useEffect } from "react";
+import { BiSolidUserCircle } from "react-icons/bi";
+import { FaRobot } from "react-icons/fa";
 import { HamBurger } from "./Hambar";
-export const Search = ({ fetchData, callback, prevChats }) => {
+export const FormComponent = () => {
   const [questions, setQuestions] = useState("");
-  callback(questions);
-  //   console.log(prevChats);
-  setInterval(() => {}, 100);
-  const f = (item, index) => (
-    <>
-      <li className="chat-message user-message chat-bubble" key={index}>
-        {item.Query}
-      </li>
-      <li className="chat-message assistant-message chat-bubble">
-        {item.Response}
-      </li>
-    </>
-  );
+  const [message, setMessage] = useState("");
+  const [prevChats, setprevChats] = useState([]);
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    const data = await fetchData(questions);
+    setMessage(data?.message.content);
+  };
+
+  useEffect(() => {
+    if (message && questions) {
+      // console.log("the answer is changing");
+      setprevChats((prevChats) => [
+        ...prevChats,
+        {
+          Query: questions,
+
+          Response: message,
+        },
+      ]);
+    }
+  }, [message]);
+
   return (
     <>
       <div className="chat-container">
         <div className="chat-header">
           <div> Sumit GPT</div>
 
-          <HamBurger
-            prevChats={prevChats}
-            callback={callback}
-            fetchData={fetchData}
-          />
+          {/* <HamBurger prevChats={prevChats} /> */}
         </div>
-
-        <ul className="chat-messages">
-          {" "}
-          {prevChats.map(f)}
-          {!questions && (
+        <div className="chat-box">
+          {prevChats.map((item, index) => (
+            <div className="chat-messages" key={index}>
+              <div className="chat-message ">
+                <div className="user-message chat-bubble d-flex ">
+                  <p>
+                    {" "}
+                    <BiSolidUserCircle />
+                    {item?.Query}
+                  </p>
+                </div>
+              </div>
+              <div className="chat-message ">
+                <div className="assistant-message chat-bubble">
+                  <p>
+                    <FaRobot />
+                    {item?.Response}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+          {prevChats.length < 1 && (
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           )}
-        </ul>
+        </div>
 
         <div className="input-area">
-          <Form>
+          <Form onSubmit={handleOnSubmit} onReset={() => setQuestions("")}>
             <Form.Group className="mb-2" controlId="formBasicEmail">
               <Form.Control
                 type="text-area"
@@ -51,21 +78,14 @@ export const Search = ({ fetchData, callback, prevChats }) => {
                 onChange={(e) => setQuestions(e.target.value)}
                 value={questions}
               />
-              <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+            <Button variant="danger" type="reset" className="m-2">
+              Clear
+            </Button>
           </Form>
-        </div>
-        <div className="input-area">
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={() => {
-              fetchData(questions);
-              console.log(questions);
-            }}
-          >
-            Submit
-          </Button>
         </div>
       </div>
     </>

@@ -4,18 +4,14 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
-export const HamBurger = ({ prevChats, fetchData }) => {
-  console.log(prevChats);
+export const HamBurger = ({ prevChats }) => {
+  // console.log(prevChats);
 
   return (
     <>
-      {[false].map((expand) => (
+      {[false].map((expand, index) => (
         <div>
-          <Navbar
-            key={expand}
-            expand={expand}
-            className="bg-body-tertiary mb-3"
-          >
+          <Navbar expand={expand} className="bg-body-tertiary mb-3">
             <Container fluid>
               <Navbar.Toggle
                 aria-controls={`offcanvasNavbar-expand-${expand}`}
@@ -33,13 +29,8 @@ export const HamBurger = ({ prevChats, fetchData }) => {
                 <Offcanvas.Body>
                   <Nav className="justify-content-end flex-grow-1 pe-3">
                     {prevChats.map((chat, index) => (
-                      <Nav.Link
-                        href="#action1"
-                        id={index}
-                        onClick={() => fetchData()}
-                      >
+                      <Nav.Link href="#action1" key={index}>
                         {chat.Query}
-                        <hr></hr>
                       </Nav.Link>
                     ))}
                   </Nav>
