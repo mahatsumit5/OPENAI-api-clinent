@@ -8,40 +8,34 @@ export const HamBurger = ({ prevChats }) => {
   // console.log(prevChats);
 
   return (
-    <>
-      {[false].map((expand, index) => (
-        <div>
-          <Navbar expand={expand} className="bg-body-tertiary mb-3">
-            <Container fluid>
-              <Navbar.Toggle
-                aria-controls={`offcanvasNavbar-expand-${expand}`}
-              />
-              <Navbar.Offcanvas
-                id={`offcanvasNavbar-expand-${expand}`}
-                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                placement="end"
-              >
-                <Offcanvas.Header closeButton>
-                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                    Questions{" "}
-                  </Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <Nav className="justify-content-end flex-grow-1 pe-3">
-                    {prevChats.map((chat, index) => (
-                      <Nav.Link href="#action1" key={index}>
-                        {chat.Query}
-                      </Nav.Link>
-                    ))}
-                  </Nav>
+    <div>
+      <Navbar className="bg-body-tertiary mb-3">
+        <Container fluid>
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-sm-sm`} />
+          <Navbar.Offcanvas
+            id={`offcanvasNavbar-sm-sm`}
+            aria-labelledby={`offcanvasNavbarLabel-sm-sm`}
+            placement="end"
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-sm-sm`}>
+                Questions{" "}
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+                {/* {prevChats.map((chat, index) => (
+                  <Nav.Link href="#action1" key={index}>
+                    {chat.Query}
+                  </Nav.Link>
+                ))} */}
+              </Nav>
 
-                  <Button variant="outline-success">Reset</Button>
-                </Offcanvas.Body>
-              </Navbar.Offcanvas>
-            </Container>
-          </Navbar>
-        </div>
-      ))}
-    </>
+              <Button variant="outline-success">Reset</Button>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
+    </div>
   );
 };
