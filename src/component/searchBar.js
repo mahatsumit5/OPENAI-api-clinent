@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { BiRightArrow } from "react-icons/bi";
-import { fetchData } from "../axios/axiosHelper";
 import { useDispatch, useSelector } from "react-redux";
 import { setChat } from "../messageSlice";
+import { fetchData } from "../helper/chatbot";
+import { CustomSpinner } from "./spinner";
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
@@ -18,9 +19,9 @@ export const SearchBar = () => {
     const pending = fetchData(questions);
     setLoading(true);
     const data = await pending;
-    setLoading(false);
-    if (data.status === "success") {
-      setMessages(data?.message.content);
+    if (data.role === "assistant") {
+      setLoading(false);
+      setMessages(data.content);
     }
   };
   useEffect(() => {
@@ -28,7 +29,7 @@ export const SearchBar = () => {
     dispatch(setChat({ Query: questions, Response: message }));
   }, [message, dispatch]);
   return (
-    <div className="searchbar p-3 shadow rounded m-2 ">
+    <div className="searchbar p-3 shadow  rounded m-2 ">
       <Form onSubmit={handleOnSubmit}>
         <Form.Control
           size="lg"
@@ -46,6 +47,7 @@ export const SearchBar = () => {
           <BiRightArrow />
         </Button>
       </Form>
+      {loading && <CustomSpinner />}
     </div>
   );
 };

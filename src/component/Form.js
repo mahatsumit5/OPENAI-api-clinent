@@ -1,23 +1,21 @@
-import { useState } from "react";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { FaRobot } from "react-icons/fa";
 import { SearchBar } from "./searchBar.js";
-import { Header } from "./Header.js";
-import { SideBar } from "./SideBar.js";
 import { useSelector } from "react-redux";
+import { Header } from "./Header.js";
 export const FormComponent = () => {
   const { chat } = useSelector((state) => state.chatList);
   return (
-    <>
-      <div className="wrapper">
+    <div className="container-fluid  m-auto">
+      <div className="wrapper ">
         <Header />
-        {/* <SideBar /> */}
-        <div className="chat-container shadow rounded m-2 p-3 text-light">
-          <div className="chat-box  p-5 w-100">
+
+        <div className="chat-container shadow rounded m-2 text-light">
+          <div className="chat-box  p-4 w-100">
             {chat?.map((item, index) => (
               <div className="chat-messages" key={index}>
                 <div className="chat-message ">
-                  <div className="user-message chat-bubble d-flex ">
+                  <div className="user-message mt-2 chat-bubble d-flex flex-wrap ">
                     <p>
                       <BiSolidUserCircle />
                       {JSON.stringify(item?.Query)}
@@ -25,7 +23,7 @@ export const FormComponent = () => {
                   </div>
                 </div>
                 <div className="chat-message ">
-                  <div className="assistant-message chat-bubble">
+                  <div className="assistant-message mt-2 chat-bubble">
                     <p>
                       <FaRobot />
                       {JSON.stringify(item?.Response)}
@@ -38,6 +36,6 @@ export const FormComponent = () => {
         </div>
         <SearchBar />
       </div>
-    </>
+    </div>
   );
 };

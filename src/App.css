@@ -1,11 +1,9 @@
 /* Reset default margin and padding */
 body {
   padding: 0;
-  background-color: #243030;
+  background-color: #2c4e4e;
 }
-.container {
-  width: 100%;
-}
+
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 5fr;
@@ -40,6 +38,7 @@ body {
   display: grid;
   grid-area: chat;
   height: 75vh;
+  overflow: auto;
 }
 
 /* Chat messages */
@@ -50,7 +49,7 @@ body {
 
 /* User message */
 .user-message {
-  background-color: #495d5d;
+  background-color: #6e8d8d;
   color: white;
   text-align: center;
   float: right;
@@ -76,11 +75,11 @@ body {
 
 /* Assistant message */
 .assistant-message {
-  max-height: 25vh;
+  max-height: 100%;
   overflow: hidden;
   text-align: left;
   width: 80%;
-  background-color: #495d5d;
+  background-color: #6e8d8d;
   overflow-y: visible;
   animation: up 2s 1;
 }
@@ -126,8 +125,7 @@ svg {
 .searchbar {
   display: grid;
   grid-area: searchbar;
-  width: 100vw;
-  margin: 0 20px 0 0px;
+  width: 98%;
 }
 form {
   position: relative;
@@ -138,7 +136,7 @@ form {
   border: none !important;
 }
 input {
-  background-color: #495d5d !important;
+  background-color: #6e8b8b !important;
 }
 .submit {
   position: absolute;
@@ -151,6 +149,13 @@ button > svg {
 .searchbar {
   position: fixed;
   bottom: 0;
+}
+.spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  color: white;
+  font-size: 2rem;
 }
 
 @media (max-width: 991px) {
